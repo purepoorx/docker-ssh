@@ -13,6 +13,9 @@ RUN echo 'root:yin2na' | chpasswd
 # 允许root密码登录
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
+# 创建SSH服务需要的特权分离目录
+RUN mkdir -p /run/sshd
+
 # 防止"Could not load host key"错误
 RUN ssh-keygen -A
 
